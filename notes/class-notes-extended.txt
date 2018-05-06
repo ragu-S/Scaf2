@@ -1,0 +1,42 @@
+// NOTE: View side by side with class-notes.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WorkSpaceSection:
+
+- Boards:
+  BoardContainerHoc
+    - handles adding/removing board children
+
+  BoardContainer
+    - handles the board viewspace, ie. whats visibly shown in the board
+    - also manages drag & drop of images/assets into Boards
+
+    - handles panning and zooming events
+
+  BoardView
+    - contains and shows the board children
+    - visually scales and updates width,height
+    - visually pans
+
+- LeftPanel
+  - shows board child templates in TemplatesPanel
+  - 

@@ -1,0 +1,127 @@
+/* State */
+
+
+/* Presentational Components */
+
+
+/* Container Components */
+LeftPanel
+- multi-tabbed
+- multi-rowed
+
+- show us react component types we can use to create associations with whats in the workspace
+- also contains a section for react patterns
+
+
+RightPanel
+- multi-tabbed
+- multi-rowed
+
+- gives us more information about each selected object within workspace
+
+
+WorkSpaceSection:
+/* Presentational Components */
+- AssociationMarker
+- Boards
+- CodeBlock
+- ImageContainer // controls sizing and listens for drops/clicks of association markers
+  -> ImageBox
+
+
+/* Container Components */
+- WorkspaceContainer
+ -> manages the different boards that can be rendered within the workspace
+
+
+ /* Specifiy classes to be associated with interactable elements */
+-> draggable types
+-> dropZone types
+-> mouseOverTypes
+
+/* Decorators */
+// draggable
+[
+  AssociationMarker,
+  AssociationBox,
+  CodeBlock,
+  ImageBox
+]
+
+// dropzone
+[
+  // Boards,
+  CodeBlock,
+  ImageBox
+]
+
+// Snappable
+[
+  AssociationMarker,
+  AssociationBox,
+  CodeBlock,
+  ImageBox
+]
+
+// resizing
+[
+  ImageBox,
+  Boards,
+  AssociationMarker
+]
+
+// create interface for doing interactions on a board, ie. dragging, resizing, rotating
+const InteractableInterface =
+{
+  x,
+  y,
+  zIndex,
+  width,
+  height
+}
+
+
+// Drag drop flow for each Board
+-> Each board handles drag/drop interface
+-> on drag over, it should show a drop/drop image over the active board
+-> onDrop, check if file is valid, via isAcceptedFileTypes
+-> saveFile to temp folder for reusing
+-> canvas process images to smaller sizes and stores in Image elements
+-> when dropping images, it will automatically determine where to place the image based on avaliable space in
+ the board, if no space available, it will automatically expand the board size and place the ImageContainer in the new space
+ and it will move camera to that space
+
+
+// layer slicing functionality
+
+/* 
+1) drop image into a Board
+2) select LayerSlice tool
+3) drag and create a slice area over dropped image on Board
+4) app crops area of image and creates a separate cropped image (using canvas function)
+5) default crop of image is scaled up by CROPPED_IMAGE_BASE_SCALE
+6) cropped image is placed just outside of the original crop image area, (placement is based on whats the closest edge of image ie. top, left, bottom or right)
+7) 
+*/ 
+
+
+// above the fold rendering
+/*
+  render only whats needed (ie. about to be visible or almost visible),
+
+  run isWithinBoundsTest() on array visibleChildren[]
+  bounds = {
+    width * 1.1,
+    height * 1.1
+  },
+  x >= bounds.x,
+  y >= bounds.y,
+  x + width <= bounds.width,
+  y + height <= bounds.height
+
+  // Change when:
+  onPan,
+  onScale,
+  onResize,
+  onJumpToPoint
+*/
